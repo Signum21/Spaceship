@@ -115,23 +115,6 @@ void show(PGraphics backgroundLines, PGraphics foregroundLines, color small, col
   image(foregroundLines, 0, 0);
 }
 
-void showTrail(){
-  for (int a = trail.size()-1; a >= 0; a--) {
-    fill(255, 200, 200, height-trail.get(a).y1);
-    trail.get(a).display();
-    trail.get(a).reduceH(1);
-    trail.get(a).goDown(5);
-  
-    if (trail.get(a).isOut(height) || !bigTriangle.contains(trail.get(a).y1)){
-      trail.remove(a);
-    }
-  }
-  
-  if(state == 3 && counter % 20 == 1 && bigTriangle.y1 < bigTriangle.yb1) {
-    trail.add(new Triangle(width/2, bigTriangle.getCenterYB1(), 140));
-  }
-}
-
 void moveExternalTriangle(){
   if (counter > 135) {
     bigTriangle.goDown(15);
@@ -166,4 +149,21 @@ void moveInternalTriangles(){
     state = (state+1)%4;
   }
   counter += mSpeed;
+}
+
+void showTrail(){
+  for (int a = trail.size()-1; a >= 0; a--) {
+    fill(255, 200, 200, height-trail.get(a).y1);
+    trail.get(a).display();
+    trail.get(a).reduceH(1);
+    trail.get(a).goDown(5);
+  
+    if (trail.get(a).isOut(height) || !bigTriangle.contains(trail.get(a).y1)){
+      trail.remove(a);
+    }
+  }
+  
+  if(state == 3 && counter % 20 == 1 && bigTriangle.y1 < bigTriangle.yb1) {
+    trail.add(new Triangle(width/2, bigTriangle.getCenterYB1(), 140));
+  }
 }
