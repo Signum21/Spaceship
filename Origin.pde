@@ -66,21 +66,6 @@ void draw() {
   counter++;
 }
 
-void moveLines(ArrayList<Line> lines, PGraphics background, int frequency, int len, int vel){
-  if (frameCount % frequency == 0) {
-    lines.add(new Line(random(0, width), -(len + 10), len));
-  } 
-
-  for (int a = lines.size()-1; a >= 0; a--) { 
-    lines.get(a).displayInside(background);
-    lines.get(a).goDown(vel);
-    
-    if (lines.get(a).isOut(height)) {
-      lines.remove(a);
-    }
-  }
-}
-
 void moveShortMediumLines(){
   pgShortMediumLines.beginDraw();
     pgShortMediumLines.background(255, 200, 200);
@@ -99,6 +84,21 @@ void moveLongLines(){
 
     moveLines(longLines, pgLongLines, 25, 120, 3);
   pgLongLines.endDraw();
+}
+
+void moveLines(ArrayList<Line> lines, PGraphics background, int frequency, int len, int vel){
+  if (frameCount % frequency == 0) {
+    lines.add(new Line(random(0, width), -(len + 10), len));
+  } 
+
+  for (int a = lines.size()-1; a >= 0; a--) { 
+    lines.get(a).displayInside(background);
+    lines.get(a).goDown(vel);
+    
+    if (lines.get(a).isOut(height)) {
+      lines.remove(a);
+    }
+  }
 }
 
 void show(PGraphics backgroundLines, PGraphics foregroundLines, color small, color big){
