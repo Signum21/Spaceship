@@ -1,6 +1,6 @@
 # Spaceship
 
-To run the project clone the repository inside a folder called "Origin"
+To run the project, clone the repository inside a folder called "Origin".
 
 p5js version on Netlify: https://peaceful-goldwasser-c3d6a5.netlify.app/
 
